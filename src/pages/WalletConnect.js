@@ -63,7 +63,7 @@ const WalletConnect = () => {
               <img src={flare} alt="flare" className="w-8 h-8" />
             </div>
             <div className="text-white font-robotic text-xl ">
-              <h1>20k $GBK Burned 🔥</h1>
+              <h1>20k $GKB Burned 🔥</h1>
             </div>
           </div>
           <div className="w-full h-[100px] flex items-center justify-center">

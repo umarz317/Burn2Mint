@@ -1,18 +1,19 @@
 import React from "react";
 import "./App.css";
 import WalletConnect from "./pages/WalletConnect";
-import MintPage from "./pages/MintPage";
+import MainPage from "./pages/MainPage";
 import { useAccount } from "wagmi";
-import { DotBackground } from "./components/DotBackground";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { isConnected } = useAccount();
 
   return (
     <div>
+      <Toaster position="bottom-right"/>
       {isConnected ? (
         <div>
-          {/* <MintPage /> */}
+          <MainPage />
         </div>
       ) : (
         <div>
