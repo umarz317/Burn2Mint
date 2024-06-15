@@ -20,6 +20,7 @@ contract CrossChainMinting is ReentrancyGuard, Ownable {
     uint256 public totalBurned;
 
     struct Burner {
+        address userAddress;
         uint256 burnedAmount;
     }
 
