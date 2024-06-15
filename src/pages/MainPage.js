@@ -149,7 +149,7 @@ const MainPage = () => {
                   </h1>
                   <h1 className="text-white text-xl font-myFont truncate overflow-hidden mt-1">
                     {isSuccessData
-                      ? formatEther(userData.burnedAmount)
+                      ? parseFloat(formatEther(userData.burnedAmount)).toFixed(2)
                       : "Loading..."}
                   </h1>
                 </div>
