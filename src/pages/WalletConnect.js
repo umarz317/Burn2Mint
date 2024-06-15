@@ -48,7 +48,7 @@ const WalletConnect = () => {
 
   return (
     <CardBackground>
-      <div className="w-[400px] h-[500px] flex items-center justify-center">
+      <div className="w-[350px] lg:w-[400px] h-[500px] flex items-center justify-center">
         <div className="w-full h-full bg-slate-900 rounded-3xl flex flex-col items-center justify-center">
           <div className="w-full h-[100px] flex items-center gap-2 justify-center relative">
             <img src={logo} alt="logo" className="w-12 h-12" />
