@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/images/icon.png";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
+
 import {
   createPublicClient,
   erc20Abi,
@@ -11,7 +12,7 @@ import {
 import { contract, GKB } from "../utils/constants";
 import { CardBackground } from "../components/CardBackground";
 import { useWeb3ModalState } from "@web3modal/wagmi/react";
-import { songbird, songbirdTestnet } from "viem/chains";
+import { songbirdTestnet } from "viem/chains";
 import { toast } from "react-hot-toast";
 
 const MainPage = () => {
@@ -19,6 +20,13 @@ const MainPage = () => {
   const { selectedNetworkId } = useWeb3ModalState();
   const [incorrectChain, setIncorrectChain] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    if (address) {
+      refetch();
+      refetchBalance();
+    }
+  }, [address]);
 
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +38,8 @@ const MainPage = () => {
     console.log(selectedNetworkId);
     if (selectedNetworkId !== 16) {
       setIncorrectChain(true);
-    } else {
+    }
+    else {
       setIncorrectChain(false);
     }
     setLoading(false);
@@ -119,82 +128,93 @@ const MainPage = () => {
               🔥 Burn2Mint
             </h4>
           </div>
-          <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
-          <h1 className="text-white font-robotic text-xl">Your Stats</h1>
-          <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
-          <div className="w-full h-[300px] flex items-center justify-center flex-col gap-2">
-            <div className="flex items-center gap-4 max-w-full p-4 justify-center">
-              <h1 className="text-white font-robotic text-xl">Balance:</h1>
-              <h2 className="text-white text-xl font-myFont truncate overflow-hidden mt-1">
-                {isSuccess
-                  ? formatEther(balance).toLocaleLowerCase()
-                  : "Loading..."}
-              </h2>
-            </div>
-            <div className="flex items-center gap-4 max-w-full p-4 justify-center">
-              <h1 className="text-white font-robotic text-xl">
-                🔥$GKB BURNED:
-              </h1>
-              <h1 className="text-white text-xl font-myFont truncate overflow-hidden mt-1">
-                {isSuccessData
-                  ? formatEther(userData.burnedAmount)
-                  : "Loading..."}
-              </h1>
-            </div>
 
-            <div className="flex flex-col items-center justify-center">
+          {!incorrectChain ? (
+            <>
               <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
-              <div className="max-w-md mx-auto relative">
-                <label
-                  htmlFor="number-input"
-                  className="block mb-2 text-sm font-medium dark:text-white font-robotic"
-                >
-                  Enter Amount To Burn:
-                </label>
-                <input
-                  type="number"
-                  value={inputValue}
-                  id="number-input"
-                  aria-describedby="Amount To Burn"
-                  className="bg-gray-100 outline-none border-2 font-myFont border-green-300 text-gray-900 text-sm rounded-lg focus:border-orange-500  block w-full p-2.5"
-                  placeholder="1000"
-                  onChange={(e) => {
-                    handleInputChange(e);
-                  }}
-                />
+              <h1 className="text-white font-robotic text-xl">Your Stats</h1>
+              <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+              <div className="w-full h-[300px] flex items-center justify-center flex-col gap-2">
+                <div className="flex items-center gap-4 max-w-full p-4 justify-center">
+                  <h1 className="text-white font-robotic text-xl">Balance:</h1>
+                  <h2 className="text-white text-xl font-myFont truncate overflow-hidden mt-1">
+                    {isSuccess
+                      ? formatEther(balance).toLocaleLowerCase()
+                      : "Loading..."}
+                  </h2>
+                </div>
+                <div className="flex items-center gap-4 max-w-full p-4 justify-center">
+                  <h1 className="text-white font-robotic text-xl">
+                    🔥$GKB BURNED:
+                  </h1>
+                  <h1 className="text-white text-xl font-myFont truncate overflow-hidden mt-1">
+                    {isSuccessData
+                      ? formatEther(userData.burnedAmount)
+                      : "Loading..."}
+                  </h1>
+                </div>
+
+                <div className="flex flex-col items-center justify-center">
+                  <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+                  <div className="max-w-md mx-auto relative">
+                    <label
+                      htmlFor="number-input"
+                      className="block mb-2 text-sm font-medium dark:text-white font-robotic"
+                    >
+                      Enter Amount To Burn:
+                    </label>
+                    <input
+                      type="number"
+                      value={inputValue}
+                      id="number-input"
+                      aria-describedby="Amount To Burn"
+                      className="bg-gray-100 outline-none border-2 font-myFont border-green-300 text-gray-900 text-sm rounded-lg focus:border-orange-500  block w-full p-2.5"
+                      placeholder="1000"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    />
+                    <button
+                      className="absolute right-2 bottom-[9px] mt-2 p-1 text-black font-myFont bg-transparent ring-2 flex justify-center items-center gap-2 hover:ring-slate-800 hover:bg-black hover:text-white ring-slate-600 rounded-lg text-xs outline-none"
+                      onClick={() => {
+                        setInputValue(formatEther(balance));
+                      }}
+                    >
+                      MAX
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full h-[100px] flex items-center justify-center">
                 <button
-                  className="absolute right-2 bottom-[9px] mt-2 p-1 text-black font-myFont bg-transparent ring-2 flex justify-center items-center gap-2 hover:ring-slate-800 hover:bg-black hover:text-white ring-slate-600 rounded-lg text-xs outline-none"
+                  className="text-white font-robotic bg-transparent ring-4 flex justify-center items-center gap-2 hover:ring-orange-800 ring-orange-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 outline-none"
                   onClick={() => {
-                    setInputValue(formatEther(balance));
+                    burnTokens();
                   }}
                 >
-                  MAX
+                  Burn{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="orange"
+                    class="size-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </button>
               </div>
+            </>
+          ) : (
+            <div className=" font-robotic w-full h-[400px] flex justify-center items-center text-center">
+              <h1 className="text-white text-lg">
+                Please Connect to Songbird Network
+              </h1>
             </div>
-          </div>
-          <div className="w-full h-[100px] flex items-center justify-center">
-            <button
-              className="text-white font-robotic bg-transparent ring-4 flex justify-center items-center gap-2 hover:ring-orange-800 ring-orange-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 outline-none"
-              onClick={() => {
-                burnTokens();
-              }}
-            >
-              Burn{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="orange"
-                class="size-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </CardBackground>
