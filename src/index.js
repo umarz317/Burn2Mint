@@ -10,13 +10,13 @@ import { DotBackground } from "./components/DotBackground";
 
 const queryClient = new QueryClient();
 
-const projectId = "85dffe8a96cad6edf73da08d7d1152fb";
+const projectId = "93f260c5c70b6b3e995e198ab0b9acdf";
 
 const metadata = {
   name: "GKB Burn2Mint",
   description: "Gokubi Burn2Mint",
-  url: "https://sfminting.vercel.app/",
-  icons: ["https://sfminting.vercel.app/logo192.png"],
+  url: "https://burn2-mint.vercel.app/",
+  icons: ["https://burn2-mint.vercel.app/logo192.png"],
 };
 
 const chains = [songbirdTestnet];
@@ -29,7 +29,7 @@ const config = defaultWagmiConfig({
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  enableAnalytics: true,
+  featuredWalletIds:['c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96'],
   defaultChain:songbirdTestnet,
   allowUnsupportedChain: false,
   themeVariables:{
