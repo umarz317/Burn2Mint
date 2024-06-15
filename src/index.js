@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { WagmiProvider } from "wagmi";
-import { bscTestnet, songbird,songbirdTestnet } from "wagmi/chains";
+import { songbird } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DotBackground } from "./components/DotBackground";
 

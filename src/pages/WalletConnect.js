@@ -4,7 +4,6 @@ import { useAccountEffect, useReadContracts } from "wagmi";
 import flare from "../assets/images/flare.png";
 import songbird from "../assets/images/songbird.png";
 import Spinner from "../components/Spinner";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { contract } from "../utils/constants";
 import { CardBackground } from "../components/CardBackground";
 import { formatEther } from "viem";

@@ -12,7 +12,7 @@ import {
 import { contract, GKB } from "../utils/constants";
 import { CardBackground } from "../components/CardBackground";
 import { useWeb3ModalState } from "@web3modal/wagmi/react";
-import { songbird, songbirdTestnet } from "viem/chains";
+import { songbird } from "viem/chains";
 import { toast } from "react-hot-toast";
 
 const MainPage = () => {

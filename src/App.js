@@ -4,6 +4,7 @@ import WalletConnect from "./pages/WalletConnect";
 import MainPage from "./pages/MainPage";
 import { useAccount, useAccountEffect } from "wagmi";
 import { Toaster ,toast} from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div>
+      <Analytics/>
       <Toaster position="bottom-right"/>
       {isConnected ? (
         <div>
