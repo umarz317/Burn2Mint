@@ -131,9 +131,9 @@ const MainPage = () => {
 
           {!incorrectChain ? (
             <>
-              <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+              <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent  to-transparent opacity-25 via-neutral-400" />
               <h1 className="text-white font-robotic text-xl">Your Stats</h1>
-              <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+              <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent to-transparent opacity-25 via-neutral-400" />
               <div className="w-full h-[300px] flex items-center justify-center flex-col gap-2">
                 <div className="flex items-center gap-4 max-w-full p-4 justify-center">
                   <h1 className="text-white font-robotic text-xl">Balance:</h1>
@@ -155,11 +155,11 @@ const MainPage = () => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center">
-                  <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+                  <hr className="w-full h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent to-transparent opacity-25 via-neutral-400" />
                   <div className="max-w-md mx-auto relative">
                     <label
                       htmlFor="number-input"
-                      className="block mb-2 text-sm font-medium dark:text-white font-robotic"
+                      className="block mb-2 text-sm font-medium text-white font-robotic"
                     >
                       Enter Amount To Burn:
                     </label>
