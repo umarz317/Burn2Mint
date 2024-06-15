@@ -1,3 +1,3 @@
 import contractAbi from '../assets/abi.json'
-export const contract = { address: '0xCfcCbdCd09b4d6717A262451F3A8a3B4444c1e53', abi: contractAbi }
-export const GKB = '0x1915462FeCE97854d6738b90d3F9Ec09e723D451'
+export const contract = { address: '0x4AE52086291BEEf689022efaE4A560a2b395F94D', abi: contractAbi }
+export const GKB = '0x2c9DD896D847dd1Ff906f3b499B5217704d739A9'

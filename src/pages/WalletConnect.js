@@ -1,38 +1,47 @@
 import React, { useState, useEffect, useMemo } from "react";
 import logo from "../assets/images/icon.png";
-import { useReadContracts } from "wagmi";
+import { useAccountEffect, useReadContracts } from "wagmi";
 import flare from "../assets/images/flare.png";
 import songbird from "../assets/images/songbird.png";
 import Spinner from "../components/Spinner";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { contract } from "../utils/constants";
 import { CardBackground } from "../components/CardBackground";
+import { formatEther } from "viem";
 
 const WalletConnect = () => {
-  const { open } = useWeb3Modal();
-  const [totalMinted, setTotalMinted] = useState();
-  const [loading, setLoading] = useState(false);
-  const [soldout, setSoldout] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [totalBurned, setTotalBurned] = useState(0);
 
-  const { data, isSuccess } = useReadContracts({
-    contracts: [{ ...contract, functionName: "totalSupply" }],
+
+
+  const { data, isSuccess,refetch } = useReadContracts({
+    contracts: [{ ...contract, functionName: "totalBurned" }],
   });
+
+  useAccountEffect({onDisconnect:()=>{refetch()}})
+  
+  function formatNumber(num) {
+    num = parseFloat(num);
+    if(num > 999 && num < 1000000){
+      return (num/1000).toFixed(1) + 'K';
+    }
+    else if(num > 1000000 && num < 1000000000){
+      return (num/1000000).toFixed(1) + 'M';
+    }
+    else if(num > 1000000000){
+      return (num/1000000000).toFixed(1) + 'B';
+    }
+  }
 
   useMemo(() => {
     if (isSuccess) {
       setLoading(false);
-      console.log(data[0].result);
-      setTotalMinted(data[0].result?.toString());
+      setTotalBurned(data[0].result);
     }
   }, [isSuccess]);
 
-  console.log(data);
-
   useEffect(() => {}, []);
-
-  async function ConnectWallet() {
-    open();
-  }
 
   return (
     <CardBackground>
@@ -63,11 +72,11 @@ const WalletConnect = () => {
               <img src={flare} alt="flare" className="w-8 h-8" />
             </div>
             <div className="text-white font-robotic text-xl ">
-              <h1>20k $GKB Burned 🔥</h1>
+              <h1>{formatNumber(formatEther(totalBurned))} $GKB Burned 🔥</h1>
             </div>
           </div>
           <div className="w-full h-[100px] flex items-center justify-center">
-            <w3m-button />
+            {loading ? <Spinner /> : <w3m-button />}
           </div>
         </div>
       </div>

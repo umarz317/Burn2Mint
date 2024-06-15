@@ -2,11 +2,13 @@ import React from "react";
 import "./App.css";
 import WalletConnect from "./pages/WalletConnect";
 import MainPage from "./pages/MainPage";
-import { useAccount } from "wagmi";
-import { Toaster } from "react-hot-toast";
+import { useAccount, useAccountEffect } from "wagmi";
+import { Toaster ,toast} from "react-hot-toast";
 
 function App() {
+
   const { isConnected } = useAccount();
+  useAccountEffect({onDisconnect: () => toast('Disconnected from wallet!',{icon:'⚠️'})});
 
   return (
     <div>

@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { WagmiProvider } from "wagmi";
-import { bscTestnet, songbird } from "wagmi/chains";
+import { bscTestnet, songbird,songbirdTestnet } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DotBackground } from "./components/DotBackground";
 
@@ -19,7 +19,7 @@ const metadata = {
   icons: ["https://sfminting.vercel.app/logo192.png"],
 };
 
-const chains = [songbird];
+const chains = [songbirdTestnet];
 const config = defaultWagmiConfig({
   chains,
   projectId,
