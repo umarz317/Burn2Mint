@@ -19,7 +19,7 @@ const metadata = {
   icons: ["https://burn2-mint.vercel.app/logo192.png"],
 };
 
-const chains = [songbirdTestnet];
+const chains = [songbird];
 const config = defaultWagmiConfig({
   chains,
   projectId,
@@ -30,7 +30,7 @@ createWeb3Modal({
   wagmiConfig: config,
   projectId,
   featuredWalletIds:['c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96'],
-  defaultChain:songbirdTestnet,
+  defaultChain:songbird,
   allowUnsupportedChain: false,
   themeVariables:{
    '--w3m-font-family':'robotic',

@@ -12,7 +12,7 @@ import {
 import { contract, GKB } from "../utils/constants";
 import { CardBackground } from "../components/CardBackground";
 import { useWeb3ModalState } from "@web3modal/wagmi/react";
-import { songbirdTestnet } from "viem/chains";
+import { songbird, songbirdTestnet } from "viem/chains";
 import { toast } from "react-hot-toast";
 
 const MainPage = () => {
@@ -36,7 +36,7 @@ const MainPage = () => {
 
   useEffect(() => {
     console.log(selectedNetworkId);
-    if (selectedNetworkId !== 16) {
+    if (selectedNetworkId !== 19) {
       setIncorrectChain(true);
     }
     else {
@@ -46,7 +46,7 @@ const MainPage = () => {
   }, [selectedNetworkId]);
 
   const publicClient = createPublicClient({
-    chain: songbirdTestnet,
+    chain: songbird,
     transport: http(),
   });
 
