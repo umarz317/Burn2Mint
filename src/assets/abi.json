@@ -143,6 +143,11 @@
 			{
 				"components": [
 					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
 						"name": "burnedAmount",
 						"type": "uint256"
@@ -181,6 +186,11 @@
 		"outputs": [
 			{
 				"components": [
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
 						"name": "burnedAmount",
