@@ -30,8 +30,7 @@ createWeb3Modal({
   wagmiConfig: config,
   projectId,
   enableAnalytics: true,
-  enableOnramp: true,
-  defaultChain:bscTestnet,
+  defaultChain:songbirdTestnet,
   allowUnsupportedChain: false,
   themeVariables:{
    '--w3m-font-family':'robotic',
