@@ -24,12 +24,12 @@ contract CrossChainMinting is ReentrancyGuard, Ownable {
         uint256 burnedAmount;
     }
 
-    mapping(address => Burner) private userBurnData;
-    address[] private burners;
-
     event BurnDeadlineExtended(uint256 additionalTime);
     event BurnDeadlineDecreased(uint256 reduceTime);
     event TokensBurned(address indexed burner, uint256 amount);
+
+    mapping(address => Burner) private userBurnData;
+    address[] private burners;
 
     constructor(IGKB _token) Ownable(msg.sender) {
         token = _token;
@@ -57,6 +57,7 @@ contract CrossChainMinting is ReentrancyGuard, Ownable {
 
         if (userBurnData[msg.sender].burnedAmount == 0) {
             burners.push(msg.sender);
+            userBurnData[msg.sender].userAddress = msg.sender;
         }
         userBurnData[msg.sender].burnedAmount = userBurnData[msg.sender]
             .burnedAmount
