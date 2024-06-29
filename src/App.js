@@ -8,7 +8,8 @@ import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
-  const { isConnected } = useAccount();
+  // const { isConnected } = useAccount();
+  const isConnected = false;
   useAccountEffect({onDisconnect: () => toast('Disconnected from wallet!',{icon:'⚠️'})});
 
   return (
