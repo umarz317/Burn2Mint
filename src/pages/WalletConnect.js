@@ -78,7 +78,8 @@ const WalletConnect = () => {
             </div>
           </div>
           <div className="w-full h-[100px] flex items-center justify-center">
-            {loading ? <Spinner /> : <w3m-button />}
+            {/* {loading ? <Spinner /> : <w3m-button />} */}
+            {loading ? <Spinner /> : <button className='text-white font-robotic rounded-xl p-2 bg-[#00BB7F]'>Burn Ended!</button>}
           </div>
         </div>
       </div>
